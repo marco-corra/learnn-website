@@ -1,368 +1,291 @@
-/* Commento in CSS */
-/* In CSS si scrive così
-
-selettore {
-    proprietà: valore;
-    proprietà: valore;
-}
-
-Accedo alle classi (come selettore) scrivendo così:
-
-.mia-classe {
-    proprietà: valore;
-}
-
-posso selezionare un elemento, o tutti gli elementi di un determinato tag, scrivendo proprio il tag
-
-p {
-    proprietà: valore;
-}
-
-oppure anche tramite la discendenza
-
-div p {
-    proprietà: valore; 
-}
-*/
-
-/* FOGLIO DI STYLE A CASCATA -> CIO' CHE STA SOTTO SOVRASCRIVE CIO' CHE E' STATO DEFINITO PRIMA */
-/* IL SELETTORE CLASSE E' PIU' IMPORTANTE E PIU' CONSIDERATO RISPETTO AL SEMPLICE SELETTORE TRAMITE TAG */
-
-h1 {
-    color: blue;
-    font-family: 'Comic Neue', cursive;
-    font-weight: 400;
-    text-transform: uppercase;
-}
-
-/* Per i colori: NOME COLORE, RGB (valori da 0 a 255), rgba (alpha permette di gestire la trasparenza, da 0 a 1), HEX (notazione esadecimale)) */
-
-
-/*
-FONT del testo, STYLE del testo:
-font web safe, universali e che ogni browser è in grado di utilizzare -> ad esempio i google font -> https://fonts.google.com/
-font-family, sans-serif -> se il primo font non è disponibile il browser prende un font generico delle famiglie senza grazie, in questo caso
-font-size (in px)
-font-weight
-
-Altre proprietà dei testi:
-text-decoration
-text-align
-line-height (ad esempio 2)
-text-transform
-
-EFFETTO HOVER
-uso della pseudo classe :hover
-*/
-
-h1:hover {
-    text-decoration: underline;
-}
-
-button {
-    background-color: yellow;
-}
-
-button:hover {
-    background-color: red;
-}
-
-/* DIMENSIONI DEGLI ELEMENTI 
-width (in px, in %)
-height (in px, in %)
-% sta indicare una dimensione relativa al proprio tag genitore */
-
-.rect {
-    width: 500px;
-    height: 300px;
-    background-color: yellow;
-    border: 3px dotted black;
-    border-bottom: 3px solid red;
-    border-radius: 20px;
-}
-
-/* min-heigh, max-height, min-width, mx-width 
-v = viewport = parte visibile del dispositivo utilizzato
-esempio
-
-vw viewport width
-vh viewport height
-
-e rappresneta la percentuale rispetto alla viewport
-
-10vh = 10% dell'altezza */
-
-/*
-
-border
-
-border-width: lo spessore del bordo si somma alle dimensioni totali del blocco
-border-style (solid, 
-border-color
-
-border-top
-border-left
-border-bottom
-border-right
-
-border-radius per stondare gli angoli, in px o in percentuale (la percentuale fa riferimento sempre al contenitore)
-*/
-
-.circle {
-    width: 500px;
-    height: 500px;
-    background-color: aquamarine;
-    border-radius: 50%;
-    margin: 0 auto;
-    background-image: url("img/logo.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-/* Margin = distanza tra il bordo degli elementi e il bordo degli elementi adiacenti 
-in px in % (rispetto al contenitore), auto
-
-La parola chiave auto funziona solo in orizzontale, non funziona in verticale
-
-* = selettore jolly, sleziona tutti i tag nella pagina, body, div, ecc ecc
-
-*/
-
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-/* COLLASSO DEI MARGINI VERTICALI -> A VOLTE CI FA IMPAZZIRE
-Il margine tra due elementi in verticale non sarà la soamma dei margini
-ma comanderà il margine maggiore */
-
-/*Padding è interno al blocco 
-in px o in % rispetto alle dimensioni del contenitore
-
-Il padding è interno, il margine è esterno
-
-Le dimensioni del padding si sommano all'altezza e alla larghezza del blocco, aumentando così le dimensioni finali del blocco
-Come sistemare?
-
-box-sizing (padding e border vengono assorbiti da width e haight)
-
-
-box-sizing: border-box;
-
-*/
-
-/* Background di un elemento
-
-background-image: url("percorso");
-background-image: linear-gradient(direzione, colore 1, colore 2, ecc)
-di default la sfumatura sarà lineare dall'alto verso il basso
-
-background-image: radial-gradient(...) ...=vari attributi
-sfumature ellittiche o circolari
-*/
-
-/* REGOLA DI BASE */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* FLEXBOX 
-
-1. creare un contenitore -> flex container (genitore di tutti gli item che vogliamo posizionare) - i figli del flex container sono i flex item
-2. applicare al flex container la proprietà display:flex 
-3. main axis e cross axis, sono gli assi lungo i quali si allineano gli item (main verticale, cross orizzontale, nonché perpendicolare al main axis
-Di default tutti gli elementi vengono disposti su una stessa riga (row)
-flex-direction: row
-Se la flex direction è row, o comunque non specificata e quindi prende row, il main axis è l'asse orizzontale mentre il cross axis è l'asse verticale
-mian size coincide con la larghezza dell'item, cross size coincide con l'altezza dell'item
-
-Se la flex direction è column allora tutto si ribalta e il main axis diventa l'asse verticale, mentre il cross axis l'asse orizzontale
-Con flex-direction: column gli elementi non si posizionano sulla stessa riga, ma si posizionano in colonna
-E di conseguenza il main size diventa l'altezza dell'item mentre il cross size diventa la larghezza dell'item
-
-Stabilire il comportamento degli items all'interno del contenitore
-
-Stabilire se si debbano disporre su un'unica fila sul proprio main axis oppure no
-proprietà unwrap (è il valore di default) o wrap
-
-*/
-
-.container-flex {
-    width: 500px;
-    height: 300px;
-    background-color: lightblue;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-}
-
-.item {
-    flex-basis: 250px;
-    border: 1px solid white;
-    color: white;
-    font-weight: 700;
-    text-align: center;
-    font-size: 20px;
-}
-
-.pink {
-    background-color: pink;
-    align-self: flex-start;
-}
-
-.green {
-    background-color: green;
-    align-self: stretch;
-    order: 20;
-}
-
-.blue {
-    background-color: blue;
-    flex-shrink: 0;
-    order: 5;
-}
-
-.orange {
-    background-color: orange;
-    align-self: flex-end;
-    order: 10;
-}
-
-/* pwer fare gli allineamenti lungo il main axis dobbiamo usare la proprietà justify-content, sul contenitore */
-/* 
-justify-content: flex-start, flex-end, , spce-between, space-around;
-
-align-items lavora lungo il cross-axis, e serve ad allineare gli elementi lungo quella direzione, quella del cross axis*/
-
-/*
-align-items: flex-start, flex-end, center, stretch, baseline */
-/* baseline vuol dire che gli elementi si allineano sulla stessa riga */
-
-/*flex-basis gestisce le dimensioni lungo il main-axis
-ad esempi se il flel-direction è row, flex-basis lavora sulla larghezza
-mentre se flex-direction è column, flex-basis lavora sull'altezza*/
-
-/* flex-grow imposta il fattore di crescita di un item e lo gestisce in modo dinamico, riempiendo tutto lo spazio possibile
-il valore di default è 0 */
-
-/* flex-shrink imposta il fattore di riduzione, ed indica se un flex item può ridursi, restirngersi, in maniera dinamina 
-il valore di default è 1 
-se la mettiamo a 0 vuol dire che non vogliamo che quell'item si stringa rispetto agli altri
-*/
-
-/* align-self serve per allineare un singolo item all'interno del contentitore 
-funziona nello stesso modo flex-start, flex-end, center, stretch, baseline 
-rappresenta il particolare caso di align items che invece allinea tutti gli item all'intenro del container
-*/
-
-/* order, proprietà per invertire o scambiare l'ordine dei singoli item
-permette di modifcare l'ordine dei singoli item senza dover mettere mano al codice html 
-tradotto: rimescolare le carte senza mettere mano al codice hmtl */
-
-/* MEDIA QUERY 
-Le dimensioni dei dispositivi cambiano, ci sono un sacco di schemri diversi
-Possiamo fare in modo che le dimensioni dei contenuti cambiano in base alla larghezza dello schermo
-
-Servono per cambiare dinamincamente i valori di alcune proprietà presenti in pagina
-
-sintassi: 
-@media mediatype and (expressions) {
-    ...
-}
-
-i meidatype possibili sono:
-all
-screen
-print
-speech (per gli screen reader)
-
-expressions rappresenta uno o più casi per cui attivare la regola
-*/
-
-/* DIMENSIONI DELLO SCHERMO 
-576px smartphone
-768px tablet orientamento portrait
-992px tablet orientamento landscape
-1200px desktop
-Quelle più utilizzate sono quelle che va a definire anche bootstrap, si parla di breakpoint
-
-Quello su cui basarci non è la risoluzione, ma la dimensione in pixel dello schermo
-*/
-
 body {
-    background-color: white;
+    background-color: #070514;
+    color: #ffffff;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 100%;
+    /* corrisponde ai 16px di default del browser */
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        background-color: grey;
-    }
+h1,
+h2,
+h3 {
+    margin-bottom: 48px;
 }
 
-/* POSIZIONAMENTO DEGLI ELEMENTI ALL'INTERNO DELLA PAGINA
-proprietà position
-valori:
-static (default) -> poisione naturale dell'elemento nell'ordine in cui viene inserito nell'html
-
-relative -> relativamente alla posizione naturale che avrebbe occupato nel caso di static (vedi proprietà di posizione) -> elemento non rimosso dal flusso del documento, ma solo spostato a livello visivo
-
-absolute -> poisizionato in maniera ssoluta rispetto al proprio contenitore, che abbia un posizionamento diverso da static (diverso da quello di defalut) -> in questo caso l'elemento viene rimosso dal flusso del documento, è come se non occupasse veramente più quella posizione
-
-fixed -> posizionare un elemento rispetto alla viewport -> si sgancia dal flusso della pagina e non scorrere allo scorrere dello schermo
-
-sticky -> posizionamento ibrido tra relative e fixed -> inizialmente viene posizionato in modo relative, dopodiché quando si scrolla e si raggiunge un certo offfset, l'elemento diventa fisso sullo schermo (tipo l'header del sito)
-
-
-Altre poprietà quando non è static
-top
-bottom
-right
-left
-(sono le coordinate di posizione)
-*/
-
-.contenitore {
-    width: 500px;
-    height: 3000px;
-    border: 1px solid black;
+h1 {
+    font-size: 96px;
+    font-weight: 600;
+    line-height: 113px;
 }
 
-.square {
-    width: 100px;
+h2 {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 75px;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 56px;
+}
+
+p {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+a {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 42px;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover {
+    color: #beda10;
+}
+
+.button {
+    background-color: #8279bb;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 36px;
+}
+
+.button:hover {
+    background-color: #beda10;
+    color: #070514;
+}
+
+.input-label {
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.input-label span {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.input-field,
+.input-textarea {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 18px;
+    color: #757575;
+    background-color: #0e0062;
+    padding: 12px 16px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.input-textarea {
     height: 100px;
 }
 
-.squarepink {
-    background-color: pink;
+.container {
+    width: 80%;
+    max-width: 1140px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-.squareblue {
-    background-color: blue;
-    position: sticky;
+section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
+.hero {
+    height: 100vh;
+    background: rgb(7, 5, 20);
+    background: linear-gradient(0deg, rgba(7, 5, 20, 1) 0%, rgba(16, 26, 98, 1) 32%);
+}
+
+.hero-content {
+    height: 100%;
+    /* Eredita l'altezza piena del contenitore padre */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-cta {
+    align-self: flex-end;
+}
+
+
+/* Header */
+.header {
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(7, 5, 20);
+    background: linear-gradient(180deg, rgba(7, 5, 20, 1) 0%, rgba(16, 26, 98, 1) 60%);
+    z-index: 5;
 }
 
-.squaregreen {
-    background-color: green;
+.header-container {
+    display: flex;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    flex-wrap: wrap;
 }
 
-/*
-z.index 
+.logo {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 42px;
+    text-transform: uppercase;
+    margin-right: 64px;
+}
 
-Decidere quale elemento sovrappone agli altri, nel caso di elementi sovrapposti
+.menu ul {
+    list-style-type: none;
+    display: flex;
+}
 
-Maggiore è lo z-index, più sta in primo piano
+.menu ul li {
+    margin-right: 24px;
+}
 
-Di default z-index=0
+.menu ul li a {
+    font-size: 24px;
+}
 
-z-index ha effetto se la position è diversa da static
-*/
+.works-menu {
+    position: sticky;
+    top: 30px;
+}
+
+.works-menu ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.works-menu ul li {
+    margin-right: 24px;
+}
+
+/* .works {} */
+
+.works-item {
+    margin-bottom: 96px;
+}
+
+.works-item-tags {
+    font-size: 24px;
+    color: #beda10;
+}
+
+.work-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.work-info-label {
+    flex-grow: 0;
+    width: 200px;
+    flex-shrink: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.work-info-content {
+    width: 70%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.images img {
+    margin-bottom: 36px;
+    max-width: 100%;
+}
+
+.image-right {
+    align-self: flex-end;
+}
+
+.image-left {
+    align-self: flex-start;
+}
+
+/* Sezione About - Contatto */
+
+/* .contacts {} */
+
+.contacts-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contacts-about,
+.contacts-form {
+    width: 40%;
+    flex-grow: 0;
+    flex-shrink: 1;
+}
+
+/* Footer */
+
+.footer {
+    background: linear-gradient(180deg, rgba(7, 5, 20, 1) 0%, rgba(14, 0, 98, 1) 100%);
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.copyright {
+    color: #757575;
+}
+
+.anchors {
+    visibility: hidden;
+    position: relative;
+    top: -150px;
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 48px;
+        line-height: 56px;
+    }
+
+    h2 {}
+
+    h3 {}
+
+    .works-menu {
+        display: none;
+    }
+
+    .contacts-content {
+        flex-direction: column;
+    }
+
+    .contacts-about, .contacts-form {
+        width: 100%;
+    }
+}
